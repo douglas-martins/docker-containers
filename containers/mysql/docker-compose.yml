@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  mysql:
+    container_name: mysql
+    image: mysql:8.0.17
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    networks:
+      default:
+        ipv4_address: 172.28.1.1
+    volumes:
+      - my-db:/var/lib/mysql
+
+volumes:
+    my-db:
+
+networks:
+    default:
+        ipam:
+            driver: default
+            config:
+                - subnet: 172.28.0.0/16

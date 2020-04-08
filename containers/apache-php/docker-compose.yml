@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+    apache:
+      container_name: easy_api
+      image: romeoz/docker-apache-php:latest
+      ports:
+        - '80:80'
+      volumes:
+        - /mnt/CONTAINER/Desenvolvimento/enviroments/containers/apache-php/easy.api.conf:/etc/apache2/sites-available/easy.api.conf
+        - /mnt/CONTAINER/Desenvolvimento/enviroments/containers/apache-php/easy.api.conf:/etc/apache2/sites-enabled/easy.api.conf
+        - /home/douglas/temp-dev/api:/var/www/app
+
+      external_links:
+        - mysql:easy_api
+
+volumes:
+    app:
+
+networks:
+    default:
+        external:
+            name: mysql_default

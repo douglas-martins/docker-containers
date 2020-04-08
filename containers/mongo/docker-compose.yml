@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  mongo:
+    image: 'mongo'
+    container_name: 'mongo'
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root
+    volumes:
+      - volume:/data/db
+    ports:
+      - '27017:27017'
+    networks:
+      default:
+        ipv4_address: 172.29.1.1
+
+volumes:
+  volume:
+
+networks:
+    default:
+        ipam:
+            driver: default
+            config:
+                - subnet: 172.29.0.0/16
